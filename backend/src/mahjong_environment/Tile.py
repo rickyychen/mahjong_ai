@@ -9,7 +9,7 @@ class Tile:
     '''
 
     TILE = {'C': {i for i in range(1, 10)}, 'T': {i for i in range(1, 10)}, 'S': {i for i in range(1, 10)}, 'W': {i for i in range(1, 5)}, 'B': {i for i in range(1, 4)}, 'F': {i for i in range(1, 5)}}
-    TILE_INDICES = {'C': 0, 'T': 9, 'S': 18, 'W': 22, 'B': 25, 'F': 29}
+    TILE_INDICES = {'C': 0, 'T': 9, 'S': 18, 'W': 27, 'B': 31, 'F': 34}
 
     def __init__(self, tile_type, tile_value):
         assert tile_type in Tile.TILE.keys()

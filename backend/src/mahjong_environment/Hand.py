@@ -1,6 +1,6 @@
 class Hand:
 
-    STATE_REP_LENGTH = 33
+    STATE_REP_LENGTH = 38
 
     def __init__(self, tiles):
         self.tiles = tiles
