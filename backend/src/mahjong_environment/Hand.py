@@ -25,7 +25,7 @@ class Hand:
                 return got_pair
             
             for i in range(len(tiles)):
-                if tiles[i] >= 4:
+                if tiles[i] == 4:
                     tiles[i] -= 4
                     if backtracking(tiles, got_pair):
                         return True
@@ -44,7 +44,7 @@ class Hand:
                     tiles[i] += 2
 
                 if tiles[i] > 0:
-                    if ((i + 2) // 9) > (i // 9) and ((i + 1) // 9) > (i // 9) and i < Tile.TILE_INDICES['W'] and tiles[i + 1] >= 1 and tiles[i + 2] >= 1:
+                    if (((i + 2) % 9) > (i % 9)) and (((i + 1) % 9) > (i % 9)) and i < Tile.TILE_INDICES['W'] and tiles[i + 1] >= 1 and tiles[i + 2] >= 1:
                         tiles[i] -= 1
                         tiles[i + 1] -= 1
                         tiles[i + 2] -= 1
