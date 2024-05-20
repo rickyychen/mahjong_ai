@@ -2,7 +2,7 @@ from Tile import Tile
 
 class Hand:
 
-    STATE_REP_LENGTH = 38
+    STATE_REP_LENGTH = 34
 
     def __init__(self, tiles):
         self.close_tiles = tiles
@@ -16,6 +16,34 @@ class Hand:
             hand[tile.get_index()] += 1
         return hand
     
+    def addTile(self, tile):
+        self.close_tiles.append(tile)
+
+    def discardTile(self, tile):
+        assert self.close_tiles.contains(tile)
+        self.close_tiles.remove(tile)
+
+    def can_pong(self, tile):
+        return self.close_tiles.count(tile) >= 2
+    
+    def pong(self, tile):
+        for i in range(2):
+            self.close_tiles.remove(tile)
+            self.open_tiles.append(tile)
+        self.open_tiles.append(tile)
+
+    def can_gong(self, tile):
+        return self.close_tiles.count(tile) >= 3 or self.open_tiles.count(tile) == 3 
+    
+    def gong(self, tile):
+        if self.open_tiles.count(tile) == 3:
+            self.open_tiles.append(tile)
+        else:
+            for i in range(3):
+                self.close_tiles.remove(tile)
+                self.open_tiles.append(tile)
+            self.open_tiles.append(tile)
+
     def is_win(self):
         #reference to this code to determine winning algorithm
         #https://leetcode.com/discuss/interview-question/1921572/find-if-it-is-a-winning-hand-in-mahjong

@@ -30,6 +30,3 @@ class TestHand(unittest.TestCase):
     def testIsWinTwoPairs(self):
         hand = Hand([self.tile_c1, self.tile_c1, self.tile_c2, self.tile_c2])
         self.assertFalse(hand.is_win())
-
-if __name__ == "__main__":
-    unittest.main()
