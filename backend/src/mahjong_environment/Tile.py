@@ -1,14 +1,5 @@
-import json
+from utils import util
 
-
-def read_from_config(relative_file_path, key):
-    f = open(relative_file_path)
-
-    data = json.load(f)
-
-    f.close()
-
-    return data[key]
 class Tile:
 
     '''
@@ -24,9 +15,9 @@ class Tile:
     # TILE_COUNT = {'C': 4, 'T': 4, 'S': 4, 'W': 4, 'B': 4, 'F': 2}
 
     CONFIG_FILE_PATH = 'backend/src/mahjong_environment/config/tile.json'
-    TILE = read_from_config(CONFIG_FILE_PATH, "possible_values")
-    TILE_INDICES = read_from_config(CONFIG_FILE_PATH, "indices")
-    TILE_COUNT = read_from_config(CONFIG_FILE_PATH, "count")
+    TILE = util.read_from_config(CONFIG_FILE_PATH, "possible_values")
+    TILE_INDICES = util.read_from_configread_from_config(CONFIG_FILE_PATH, "indices")
+    TILE_COUNT = util.read_from_config(CONFIG_FILE_PATH, "count")
 
     def __init__(self, tile_type, tile_value):
         assert tile_type in Tile.TILE.keys()

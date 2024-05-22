@@ -19,5 +19,6 @@
         "S": 4,
         "W": 4, 
         "B": 4
-    }
+    },
+    "hand_state_rep_length": 34
 }

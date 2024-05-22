@@ -1,8 +1,9 @@
 from Tile import Tile
+from utils import util
 
 class Hand:
 
-    STATE_REP_LENGTH = 34
+    STATE_REP_LENGTH = util.read_from_config(Tile.CONFIG_FILE_PATH, "hand_state_rep_length")
 
     def __init__(self, tiles):
         self.close_tiles = tiles
@@ -10,8 +11,18 @@ class Hand:
     
     def list_form(self):
         hand = [0] * Hand.STATE_REP_LENGTH
+        for i in range(Hand.STATE_REP_LENGTH):
+            hand[i] += self.open_tiles_list_form()[i] + self.close_tiles_list_form()[i]
+        return hand
+    
+    def close_tiles_list_form(self):
+        hand = [0] * Hand.STATE_REP_LENGTH
         for tile in self.close_tiles:
             hand[tile.get_index()] += 1
+        return hand
+    
+    def open_tiles_list_form(self):
+        hand = [0] * Hand.STATE_REP_LENGTH
         for tile in self.open_tiles:
             hand[tile.get_index()] += 1
         return hand
