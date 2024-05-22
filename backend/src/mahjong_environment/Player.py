@@ -22,3 +22,6 @@ class Player:
     
     def gong(self, tile):
         self.hand.gong(tile)
+
+    def close_tiles(self):
+        return self.hand.close_tiles

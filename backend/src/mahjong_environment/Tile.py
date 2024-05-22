@@ -1,4 +1,4 @@
-from utils import util
+from utils.util import *
 
 class Tile:
 
@@ -9,15 +9,10 @@ class Tile:
     
     TILE_INDICES indicates the index of tile in list form 
     '''
-
-    # TILE = {'C': {i for i in range(1, 10)}, 'T': {i for i in range(1, 10)}, 'S': {i for i in range(1, 10)}, 'W': {i for i in range(1, 5)}, 'B': {i for i in range(1, 4)}, 'F': {i for i in range(1, 5)}}
-    # TILE_INDICES = {'C': 0, 'T': 9, 'S': 18, 'W': 27, 'B': 31, 'F': 34}
-    # TILE_COUNT = {'C': 4, 'T': 4, 'S': 4, 'W': 4, 'B': 4, 'F': 2}
-
-    CONFIG_FILE_PATH = 'backend/src/mahjong_environment/config/tile.json'
-    TILE = util.read_from_config(CONFIG_FILE_PATH, "possible_values")
-    TILE_INDICES = util.read_from_configread_from_config(CONFIG_FILE_PATH, "indices")
-    TILE_COUNT = util.read_from_config(CONFIG_FILE_PATH, "count")
+    
+    TILE = read_from_config(CONFIG_FILE_PATH, "possible_values")
+    TILE_INDICES = read_from_config(CONFIG_FILE_PATH, "indices")
+    TILE_COUNT = read_from_config(CONFIG_FILE_PATH, "count")
 
     def __init__(self, tile_type, tile_value):
         assert tile_type in Tile.TILE.keys()

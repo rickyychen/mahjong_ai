@@ -1,6 +1,5 @@
 from Tile import Tile
-from Hand import Hand
-from random import shuffle, randint
+from random import shuffle
 
 class Game:
 
@@ -16,6 +15,3 @@ class Game:
             for player in self.players:
                 for j in range(4):
                     player.addTile(self.deck.pop())
-
-    def play(self):
-        

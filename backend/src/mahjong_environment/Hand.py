@@ -1,9 +1,9 @@
 from Tile import Tile
-from utils import util
+from utils.util import *
 
 class Hand:
 
-    STATE_REP_LENGTH = util.read_from_config(Tile.CONFIG_FILE_PATH, "hand_state_rep_length")
+    STATE_REP_LENGTH = read_from_config(CONFIG_FILE_PATH, "hand_state_rep_length")
 
     def __init__(self, tiles):
         self.close_tiles = tiles

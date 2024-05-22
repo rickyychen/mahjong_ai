@@ -11,7 +11,11 @@
         "T": 9,
         "S": 18, 
         "W": 27,
-        "B": 31
+        "B": 31,
+        "pong": 34,
+        "gong": 35,
+        "win": 36,
+        "pass": 37
     },
     "count": {
         "C": 4, 
@@ -20,5 +24,6 @@
         "W": 4, 
         "B": 4
     },
-    "hand_state_rep_length": 34
+    "hand_state_rep_length": 34,
+    "action_state_rep_length": 38
 }

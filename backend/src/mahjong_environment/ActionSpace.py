@@ -1,3 +1,5 @@
+from utils.util import *
+
 class ActionSpace:
     """
     Action ID: action
@@ -9,11 +11,24 @@ class ActionSpace:
     34: pong
     35: gong
     36: win
-    37: gong
+    37: pass
     """
 
-    def __init__(self, open_tiles, close_tiles):
-        self.open_tiles = open_tiles
-        self.close_tiles = close_tiles
-    
-    def display_legal_action(self, tile):
+    STATE_REP_LENGTH = read_from_config(CONFIG_FILE_PATH, "action_state_rep_length")
+    ACTIONS = read_from_config(CONFIG_FILE_PATH, "indices")
+
+    def __init__(self, player):
+        self.player = player
+
+    def display_legal_actions(self, tile):
+        #display legal actions when last player played a tile
+        legal_actions = set()
+        legal_actions.add(ActionSpace.ACTIONS["pass"])
+
+    def display_legal_actions(self):
+        #display legal actions when self draw a tile
+        legal_actions = set()
+        if self.player.can_win():
+            return {ActionSpace.ACTIONS["win"]}
+        for tile in self.player.close_tiles():
+            legal_actions.add(tile.get_index())
