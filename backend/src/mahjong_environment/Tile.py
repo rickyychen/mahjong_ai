@@ -9,7 +9,7 @@ class Tile:
     
     TILE_INDICES indicates the index of tile in list form 
     '''
-    
+
     TILE = read_from_config(CONFIG_FILE_PATH, "possible_values")
     TILE_INDICES = read_from_config(CONFIG_FILE_PATH, "indices")
     TILE_COUNT = read_from_config(CONFIG_FILE_PATH, "count")
@@ -25,3 +25,10 @@ class Tile:
     
     def __repr__(self):
         return self.tile_type + str(self.tile_value)
+    
+def get_tile_from_index(index):
+    reverse_indices = {j: i for i, j in Tile.TILE_INDICES.items()}
+    indices = sorted(list(Tile.TILE_INDICES.values()), reverse=True)
+    for i in range(len(indices)):
+        if index >= indices[i]:
+            return reverse_indices[indices[i]], index - indices[i] + 1

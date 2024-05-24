@@ -1,47 +1,27 @@
-from Tile import Tile
 from utils.util import *
+from Tile import Tile
 
 class Hand:
 
     STATE_REP_LENGTH = read_from_config(CONFIG_FILE_PATH, "hand_state_rep_length")
 
-    def __init__(self, tiles):
-        self.close_tiles = tiles
-        self.open_tiles = []
+    def __init__(self):
+        self.close_tiles = [0] * Hand.STATE_REP_LENGTH 
+        self.open_tiles = [0] * Hand.STATE_REP_LENGTH
     
-    def list_form(self):
-        hand = [0] * Hand.STATE_REP_LENGTH
-        for i in range(Hand.STATE_REP_LENGTH):
-            hand[i] += self.open_tiles_list_form()[i] + self.close_tiles_list_form()[i]
-        return hand
-    
-    def close_tiles_list_form(self):
-        hand = [0] * Hand.STATE_REP_LENGTH
-        for tile in self.close_tiles:
-            hand[tile.get_index()] += 1
-        return hand
-    
-    def open_tiles_list_form(self):
-        hand = [0] * Hand.STATE_REP_LENGTH
-        for tile in self.open_tiles:
-            hand[tile.get_index()] += 1
-        return hand
-    
-    def addTile(self, tile):
-        self.close_tiles.append(tile)
+    def addTile(self, tile_index):
+        self.close_tiles[tile_index] += 1
 
-    def discardTile(self, tile):
-        assert self.close_tiles.contains(tile)
-        self.close_tiles.remove(tile)
+    def discardTile(self, tile_index):
+        assert self.close_tiles[tile_index] > 0
+        self.close_tiles[tile_index] -= 1
 
-    def can_pong(self, tile):
-        return self.close_tiles.count(tile) >= 2
+    def can_pong(self, tile_index):
+        return self.close_tiles[tile_index] >= 2
     
-    def pong(self, tile):
-        for i in range(2):
-            self.close_tiles.remove(tile)
-            self.open_tiles.append(tile)
-        self.open_tiles.append(tile)
+    def pong(self, tile_index):
+        self.close_tiles[tile_index] -= 2
+        self.open_tiles[tile_index] += 3
 
     def can_gong(self, tile):
         return self.close_tiles.count(tile) >= 3 or self.open_tiles.count(tile) == 3 

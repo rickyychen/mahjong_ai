@@ -14,4 +14,4 @@ class Game:
         for i in range(4):
             for player in self.players:
                 for j in range(4):
-                    player.addTile(self.deck.pop())
+                    player.addTile(self.deck.pop()) 
