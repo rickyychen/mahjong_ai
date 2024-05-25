@@ -38,7 +38,8 @@ class Hand:
             self.close_tiles[tile_index] -= 3
             self.open_tiles[tile_index] += 4
 
-    def is_win(self):
+    def is_win(self, tile_index):
+        #should call this method before add tile to hand
         #reference to this code to determine winning algorithm
         #https://leetcode.com/discuss/interview-question/1921572/find-if-it-is-a-winning-hand-in-mahjong
 
@@ -76,8 +77,10 @@ class Hand:
                         tiles[i + 1] += 1
                         tiles[i + 2] += 1
             return False
-        
-        return backtracking(self.tiles(), False)
+        self.addTile(tile_index)
+        result = backtracking(self.tiles(), False)
+        self.discardTile(tile_index)
+        return result
     
     def clear(self):
         self.close_tiles = [0] * Hand.STATE_REP_LENGTH 

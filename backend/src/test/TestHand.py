@@ -16,21 +16,19 @@ class TestHand(unittest.TestCase):
     
     def testIsWinPairNonFlush(self):
         self.hand.addTile(self.tile_c1)
-        self.hand.addTile(self.tile_c1)
-        self.assertTrue(self.hand.is_win())
+        self.assertTrue(self.hand.is_win(self.tile_c1))
 
     def testIsWinNonPairFlush(self):
         self.hand.addTile(self.tile_c1)
         self.hand.addTile(self.tile_c2)
-        self.hand.addTile(self.tile_c3)
-        self.assertFalse(self.hand.is_win())
+        self.assertFalse(self.hand.is_win(self.tile_c3))
 
     def testIsWinPairFlush(self):
-        hand = Hand([self.tile_c1, self.tile_c1, self.tile_c2, self.tile_c3, self.tile_c4])
-        self.assertTrue(hand.is_win())
-        hand = Hand([self.tile_c1, self.tile_c1, self.tile_c1, self.tile_c2, self.tile_c3])
-        self.assertTrue(hand.is_win())
+        hand = Hand([self.tile_c1, self.tile_c1, self.tile_c2, self.tile_c3])
+        self.assertTrue(hand.is_win(self.tile_c4))
+        hand = Hand([self.tile_c1, self.tile_c1, self.tile_c1, self.tile_c2])
+        self.assertTrue(hand.is_win(self.tile_c3))
     
     def testIsWinTwoPairs(self):
-        hand = Hand([self.tile_c1, self.tile_c1, self.tile_c2, self.tile_c2])
-        self.assertFalse(hand.is_win())
+        hand = Hand([self.tile_c1, self.tile_c1, self.tile_c2])
+        self.assertFalse(hand.is_win(self.tile_c2))
