@@ -32,3 +32,15 @@ class TestHand(unittest.TestCase):
     def testIsWinTwoPairs(self):
         hand = Hand([self.tile_c1, self.tile_c1, self.tile_c2])
         self.assertFalse(hand.is_win(self.tile_c2))
+
+    def testCanChiLeft(self):
+        hand = Hand([self.tile_c1, self.tile_c3, self.tile_c2])
+        self.assertTrue(hand.can_chi_left(self.tile_c1))
+
+    def testCanChiMiddle(self):
+        hand = Hand([self.tile_c1, self.tile_c3, self.tile_c2])
+        self.assertTrue(hand.can_chi_middle(self.tile_c2))
+
+    def testCanChiRight(self):
+        hand = Hand([self.tile_c1, self.tile_c1, self.tile_c2])
+        self.assertTrue(hand.can_chi_right(self.tile_c3))

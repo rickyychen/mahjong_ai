@@ -21,6 +21,19 @@ class Hand:
         assert self.close_tiles[tile_index] > 0
         self.close_tiles[tile_index] -= 1
 
+    def can_chi_left(self, tile_index):
+        #case of chi 1 when have tile 2 and tile 3
+        assert tile_index < Tile.TILE_INDICES["W"]
+        return (((tile_index + 2) % 9) > (tile_index % 9)) and (((tile_index + 1) % 9) > (tile_index % 9)) and self.close_tiles[tile_index + 2] and self.close_tiles[tile_index + 1]
+
+    def can_chi_middle(self, tile_index):
+        assert tile_index < Tile.TILE_INDICES["W"]
+        return (((tile_index + 1) % 9) > (tile_index % 9)) and (((tile_index - 1) % 9)) < (tile_index % 9) and self.close_tiles[tile_index - 1] and self.close_tiles[tile_index + 1]
+
+    def can_chi_right(self, tile_index):
+        assert tile_index < Tile.TILE_INDICES["W"]
+        return (((tile_index - 2) % 9) < (tile_index % 9)) and (((tile_index - 1) % 9) < (tile_index % 9)) and self.close_tiles[tile_index - 2] and self.close_tiles[tile_index - 1]
+
     def can_pong(self, tile_index):
         return self.close_tiles[tile_index] >= 2
     
