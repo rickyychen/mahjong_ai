@@ -8,14 +8,17 @@ class ActionSpace:
     18 - 26: discard stick 1 - 9
     27 - 30: discard east west south north
     31 - 33: discard middle, money, blank
-    34: pong
-    35: gong
-    36: win
-    37: pass
+    34: chi_left
+    35: chi_middle
+    36: chi_right
+    37: pong
+    38: gong
+    39: win
+    40: pass
     """
 
     STATE_REP_LENGTH = read_from_config(CONFIG_FILE_PATH, "action_state_rep_length")
-    ACTIONS = read_from_config(CONFIG_FILE_PATH, "indices")
+    ACTIONS = read_from_config(CONFIG_FILE_PATH, "actions")
 
     def __init__(self, player):
         self.player = player
